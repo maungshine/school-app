@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block title %}Edit Post{% endblock %}
+{% block style %}
+<style media="screen">
+  #body {
+    background-image: none;
+  }
+</style>
+{% endblock %}
+{% block main %}
+
+<div class="container-fluid box">
+  <div class="form login-width">
+
+  <form class="" action="{{ url_for('main.editpost', id=postid)}}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="from-group">
+      {{ form.title.label }}
+      {{ form.title(class="form-control") }}
+    </div>
+    <div class="from-group">
+      {{ form.post.label }}
+      {{ form.post(class="form-control", cols="30", rows="10") }}
+    </div><br>
+
+      {{ form.submit(class="btn btn-dark") }}
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+      Delete
+      </button>
+
+  </form>
+
+</div>
+</div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this post.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>You cannot restore the post after deleting it.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action="{{ url_for('main.deletepost', id=postid)}}" method="POST">
+              <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block title %}Applications{% endblock %}
+{% block style %}
+<style media="screen">
+  #body {
+    background-image: none;
+  }
+</style>
+{% endblock %}
+{% block main %}
+  <div class="container">
+
+  </div>
+  <div class="container" style="padding: 2em;">
+    <h2 class="text-center">Student Applications</h2>
+  </div>
+
+
+  {% if not applicants %}
+  <div class="container text-center" style="padding: 2em">
+    <h4>There is no application currently for this program.</h4>
+  </div>
+
+  {% else %}
+  <div class="container" style="overflow-x:auto;">
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for applicant in applicants.items %}
+      <tr>
+        <th scope="row">{{ applicant.id }}</th>
+        <th><a href="/update/applicant/{{ applicant.id }}">{{ applicant.name }}</a></th>
+        <td>{{ applicant.email }}</td>
+        <td>{{ applicant.birthday }}</td>
+        <td>{{ applicant.phone }}</td>
+        <td>{{ applicant.address }}</td>
+        {% if applicant.status == True %}
+        <td>Accepted</td>
+        {% else %}
+        <td><form class="" action="/addstudent/{{ applicant.id }}" method="POST">
+          <button type="submit" name="addstudent" class="btn btn-success">Accept</button>
+        </form></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  </div>
+  <div class="container login-header text-center">
+    {% for page_num in applicants.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+    {% if applicants.page == page_num %}
+    <a class="btn btn-info"href="{{ url_for('main.applicant', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="btn btn-outline-info"href="{{ url_for('main.applicant', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+
+    {% else %}
+      ...
+    {% endif %}
+    {% endfor %}
+
+  </div>
+
+{% endblock %}

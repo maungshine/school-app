@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Create Post{% endblock %}
+{% block style %}
+<style media="screen">
+  #body {
+    background-image: none;
+  }
+</style>
+{% endblock %}
+{% block main %}
+<div class="container-fluid box">
+  <div class="form login-width">
+
+
+  <form class="" action="{{ url_for('main.createpost')}}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="from-group">
+      {{ form.title.label }}
+      {{ form.title(class="form-control") }}
+    </div>
+    <div class="from-group">
+      {{ form.post.label }}
+      {{ form.post(class="form-control", cols="30", rows="10") }}
+    </div><br>
+
+      {{ form.submit(class="btn btn-dark") }}
+
+  </form>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}Request Password Reset{% endblock %}
+{% block nav %}
+  {% if type == "admin" %}
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav navbar-right">
+        <a class="nav-item nav-link active" href="{{ url_for('main.register') }}">Register</a>
+        <a class="nav-item nav-link active" href="{{ url_for('main.adminlogin') }}">Login</a>
+      </div>
+    </div>
+  </nav>
+  {% else %}
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav navbar-right">
+        <a class="nav-item nav-link active" href="{{ url_for('student.apply') }}">Apply</a>
+        <a class="nav-item nav-link active" href="{{ url_for('student.studentlogin') }}">Login</a>
+      </div>
+    </div>
+  </nav>
+  {% endif %}
+{% endblock %}
+{% block main %}
+<div class="container-fluid box">
+  <div class="form login-width">
+
+<div class="container">
+  <p>Enter your email and press submit. We will send you an email with a link to reset your password.</p>
+</div>
+
+  <form action="{{ url_for('main.pwResetRequest', type=type)}}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.email.label }}
+        {% if form.email.errors %}
+            {{ form.email (class="form-control") }}
+            <div>
+                {% for error in form.email.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.email (class="form-control")}}
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ form.submit(class="btn btn-dark") }}
+    </div>
+
+
+
+  </form>
+</div>
+</div>
+
+
+
+
+{% endblock %}

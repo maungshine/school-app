@@ -1,0 +1,273 @@
+{% extends "layout.html" %}
+{% block title %}Profile{% endblock %}
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}" type="text/css">
+{% endblock %}
+{% block main %}
+<div class=" container-fluid profile">
+
+
+{% if type == "student" %}
+<div class="emp-profile profile-width">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img class="image rounded-circle" src="{{ url_for('static', filename='profile/' + student.image)}}" alt="profile image"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5 style="padding: 2em;">
+                                        {{ student.name }}
+                                    </h5>
+
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Student Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.studentid }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.email }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.phone }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Program</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.program }}</p>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.address }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>City</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.city }}</p>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Country</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ student.country }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Documents</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="{{ url_for('static', filename='documents/' + student.document)}}">Link to Document</a>
+                                            </div>
+                                        </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                  <form style="display: inline-block;" class="fm" action="/update/student/{{ student.studentid }}" method="POST">
+                      <button type="submit" name="update" class="btn btn-dark">Update</button>
+                  </form>
+                  {% if current_user.type == "student" %}
+                  <form class="button" action="/changepw" method="GET">
+                    <button type="submit" name="changePw" class="btn btn-primary">Change password</button>
+                  </form>
+                  {% endif %}
+
+                  {% if current_user.type == "admin" %}
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  Delete
+                  </button>
+                  {% endif %}
+
+        </div>
+        </div>
+        </div>
+{% else %}
+<div class="emp-profile profile-width">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img class="rounded-circle "src="{{ url_for('static', filename='profile/' + admin.image)}}" alt="profile image"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5 style="padding: 2em;">
+                                        {{ admin.username }}
+                                    </h5>
+
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Admin Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ admin.adminID }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Username</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ admin.username }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ admin.email }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>School</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ admin.school }}</p>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                  <form style="display: inline-block;" class="fm" action="/update/admin/{{ admin.adminID }}" method="GET">
+                      <button type="submit" name="update" class="btn btn-dark">Update</button>
+                  </form>
+                  <form class="button" action="/changepw" method="GET">
+                    <button type="submit" name="changePw" class="btn btn-primary">Change password</button>
+                  </form>
+                  {% if current_user.type == "admin" %}
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                  Delete Account
+                  </button>
+
+                  {% endif %}
+
+        </div>
+        </div>
+        </div>
+{% endif %}
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        {% if type == "admin" %}
+        <h5 class="modal-title" id="exampleModalLabel">Do you want to delete the admin account.</h5>
+        {% else %}
+        <h5 class="modal-title" id="exampleModalLabel">Do you want to delete this account.</h5>
+        {% endif %}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You cannot get the account back after deleting it.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        {% if type == "admin" %}
+        <form action="{{url_for('main.remove', type=type, id=id)}}" method="POST">
+            <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+        </form>
+        {% else %}
+        <form action="{{url_for('main.remove', type=type, id=student.studentid)}}" method="POST">
+            <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

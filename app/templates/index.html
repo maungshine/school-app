@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block style %}
+<style media="screen">
+  #body {
+    background-image: none;
+  }
+</style>
+{% endblock %}
+{% block main %}
+<div class="container" style="padding: 2em;">
+  <h2 class="text-center">Current students</h2>
+</div>
+
+
+
+  {% if not students %}
+  <div class="text-center">
+    <h4>There is no student currently enrolled in this program.</h4>
+  </div>
+
+  {% else %}
+  <div class="container" style="overflow-x:auto;">
+    <table class="table table-striped" >
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for student in students.items %}
+      <tr>
+        <td scope="row"><a href="{{ url_for('main.profile', type='student', id=student.studentid) }}">{{ student.name }}</a></td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.birthday }}</td>
+        <td>{{ student.phone }}</td>
+        <td>{{ student.address }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  </div>
+  <div class="container login-header text-center">
+    {% for page_num in students.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+    {% if students.page == page_num %}
+    <a class="btn btn-info"href="{{ url_for('main.index', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="btn btn-outline-info"href="{{ url_for('main.index', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+
+    {% else %}
+      ...
+    {% endif %}
+    {% endfor %}
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block title %}Anouncement{% endblock %}
+{% block style %}
+<style media="screen">
+    #body {
+      background-image: none;
+    }
+
+</style>
+{% endblock %}
+{% block main %}
+<div class="wrapper container-fluid">
+
+
+{% if current_user.type == "admin" %}
+<div class="container" style="text-align: center; padding-top: 2em;">
+  <form class="" action="{{ url_for('main.createpost') }}" method="GET">
+    <button type="submit" class="btn btn-primary" name="button">Create Post</button>
+  </form>
+</div><br>
+{% endif %}
+<div class="container" style="margin-top: 20px;">
+    {% for post in posts.items %}
+
+      <div class="card post">
+        <div class="card-body">
+          <h5 class="card-title"><h5>{{ post.title }}</h5></h5>
+          <div class="date">
+            <span>{{ post.date.strftime('%d-%m-%Y') }}</span>
+          </div>
+          <p class="card-text">{{ post.post }}</p>
+          {% if current_user.type == "admin" %}
+          <div style="display: inline-block;">
+            <form class="" action="{{ url_for('main.editpost', id=post.postid)}}" method="GET">
+              <button type="submit" class="btn btn-primary" name="button">Edit</button>
+            </form>
+          </div>
+          {% endif %}
+      </div>
+    </div>
+
+    <br>
+
+    {% endfor %}
+</div>
+<div class="container login-header text-center">
+  {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+  {% if posts.page == page_num %}
+  <a class="btn btn-info"href="{{ url_for('main.anouncement', page=page_num) }}">{{ page_num }}</a>
+  {% else %}
+  <a class="btn btn-outline-info"href="{{ url_for('main.anouncement', page=page_num) }}">{{ page_num }}</a>
+  {% endif %}
+
+  {% else %}
+    ...
+  {% endif %}
+  {% endfor %}
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,241 @@
+{% extends "layout.html" %}
+{% block title %}Update{% endblock %}
+{% block main %}
+<div class="container-fluid box">
+
+<div class="form login-width">
+
+
+
+<div class="container text-center" style="padding: 2em;">
+  <h3>Update {{ type }} information</h3>
+</div>
+{% if type == "student" or type == "applicant" %}
+
+<form class="form" action="/update/{{ type }}/{{ id }}" method="POST" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  <div class="form-group">
+      {{ form.name.label }}
+      {% if form.name.errors %}
+          {{ form.name (class="form-control") }}
+          <div>
+              {% for error in form.name.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.name (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.email.label }}
+      {% if form.email.errors %}
+          {{ form.email (class="form-control") }}
+          <div>
+              {% for error in form.email.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.email (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.birthday.label }}
+      {% if form.birthday.errors %}
+          {{ form.birthday (class="form-control", type="date") }}
+          <div>
+              {% for error in form.birthday.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.birthday (class="form-control", type="date")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.phone.label }}
+      {% if form.phone.errors %}
+          {{ form.phone (class="form-control") }}
+          <div>
+              {% for error in form.phone.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.phone (class="form-control")}}
+      {% endif %}
+  </div>
+  {% if type != "applicant" %}
+  <div class="form-group">
+      {{ form.profile.label }}
+      {% if form.profile.errors %}
+          {{ form.profile (class="form-control-file", type="file") }}
+          <div>
+              {% for error in form.profile.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.profile (class="form-control-file", type="file")}}
+      {% endif %}
+  </div>
+  {% endif %}
+  <div class="form-group">
+      {{ form.address.label }}
+      {% if form.address.errors %}
+          {{ form.address (class="form-control") }}
+          <div>
+              {% for error in form.address.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.address (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.city.label }}
+      {% if form.city.errors %}
+          {{ form.city (class="form-control") }}
+          <div>
+              {% for error in form.city.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.city (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.country.label }}
+      {% if form.country.errors %}
+          {{ form.country (class="form-control") }}
+          <div>
+              {% for error in form.country.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.country (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.program.label }}
+      {% if form.program.errors %}
+          {{ form.program (class="form-control") }}
+          <div>
+              {% for error in form.program.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.program (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="">
+    <a href="{{ url_for('static', filename='documents/' + student.document)}}">Link to Document</a>
+  </div>
+  <br>
+
+    {{ form.submit(class="btn btn-dark") }}
+
+    {% if type == "applicant" %}
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete</button>
+    {% endif %}
+
+
+</form>
+
+{% else %}
+<form class="form" action="/update/{{ type }}/{{ id }}" method="POST" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  <div class="form-group">
+      {{ form.username.label }}
+      {% if form.username.errors %}
+          {{ form.username (class="form-control") }}
+          <div>
+              {% for error in form.username.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.username (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.email.label }}
+      {% if form.email.errors %}
+          {{ form.email (class="form-control") }}
+          <div>
+              {% for error in form.email.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.email (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.profile.label }}
+      {% if form.profile.errors %}
+          {{ form.profile (class="form-control-file", type="file") }}
+          <div>
+              {% for error in form.profile.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.profile (class="form-control-file", type="file")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.school.label }}
+      {% if form.school.errors %}
+          {{ form.school (class="form-control") }}
+          <div>
+              {% for error in form.school.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.school (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+    {{ form.submit(class="btn btn-dark") }}
+  </div>
+
+</form>
+
+{% endif %}
+</div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Do you want to delete the {{ type }}.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p>You cannot restore data after deleting him/her.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form  action="/remove/applicant/{{ id }}" method="POST">
+          <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

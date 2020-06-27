@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}Search{% endblock %}
+{% block style %}
+<style media="screen">
+  #body {
+    background-image: none;
+  }
+</style>
+{% endblock %}
+{% block main %}
+<div class="container text-center" style="padding-top: 2em;">
+  <h3>Search Students/Applicants</h3>
+</div>
+<div class="container-fluid box">
+  <div class="form login-width">
+
+
+
+<form action="" method="POST">
+  {{ form.hidden_tag() }}
+  <div class="from-group">
+    {{ form.name.label }}
+    {{ form.name(class="form-control") }}
+  </div><br>
+  <div class="form-group">
+      {{ form.option1.label }}
+      {{ form.option1 }}
+  </div>
+    <br>
+<div class="form-group">
+    {{ form.option.label }}
+    {{ form.option }}
+</div>
+  <br>
+  <div class="form-group">
+    {{ form.submit(class="btn btn-primary") }}
+  </div>
+
+</form>
+</div>
+
+</div>
+{% endblock %}

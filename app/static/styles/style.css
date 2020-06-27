@@ -1,0 +1,189 @@
+
+.button {
+  display: inline-block;
+}
+.error {
+  color: #ff0000;
+  font-size: 15px;
+}
+
+/* anouncement */
+.date {
+  text-align: right;
+  font-size: 10px;
+}
+.post {
+  position: relative;
+  width: 70%;
+  margin: auto;
+  }
+  .wrapper{
+    position: relative;
+  }
+  hr {
+    width: 70%;
+  }
+
+
+/* profile page */
+
+.profile {
+    position: relative;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+}
+
+.emp-profile{
+    position: relative;
+    padding: 5%;
+    margin: auto;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+.profile-width {
+  width: 90%;
+}
+
+.fm {
+  display: inline-block;
+}
+.profile-img{
+    text-align: center;
+}
+.image {
+  width: 200;
+  height: 200;
+}
+
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+
+.profile-head h5{
+    color: #333;
+}
+.profile-head h6{
+    color: #0062cc;
+}
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+.profile-work{
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p{
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    font-weight: 600;
+    color: #0062cc;
+}
+
+.nav-color {
+  background-image: linear-gradient(to right, #0088ff, #00eeff);
+}
+
+.login-width {
+  width: 90%;
+}
+
+/* form style */
+.form {
+  /* float: inline-block; */
+
+  position: relative;
+  margin: auto;
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 25px;
+}
+
+.box {
+  position: relative;
+  /* height: 720px; */
+  padding-top: 3em;
+  padding-bottom: 3em;
+  /* background-color: #0088ff */
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  background-image: linear-gradient(to right, #0088ff, #00eeff);
+}
+
+.login-header {
+  padding: 2em 0em 2em 0em;
+}
+
+@media only screen and (min-width: 600px) {
+  .login-width {
+    width: 70%;
+  }
+
+}
+
+@media only screen and (min-width: 768px) {
+  .login-width {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .login-width {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .login-width {
+    width: 30%;
+  }
+}

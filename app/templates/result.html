@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block title %}Search results{% endblock %}
+{% block style %}
+<style media="screen">
+  #body {
+    background-image: none;
+  }
+</style>
+{% endblock %}
+{% block main %}
+<div class="container" style="padding: 2em;">
+  <h2 class="text-center">Search Results for {{ type }}</h2>
+</div>
+
+
+<div class="container" style="overflow-x:auto;">
+  {% if type == "applicant" %}
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for student in students %}
+    <tr>
+      <th scope="row">{{ student.id }}</th>
+      <th><a href="/update/applicant/{{ student.id }}">{{ student.name }}</a></th>
+      <td>{{ student.email }}</td>
+      <td>{{ student.birthday }}</td>
+      <td>{{ student.phone }}</td>
+      <td>{{ student.address }}</td>
+      {% if student.status == True %}
+      <td>Accepted</td>
+      {% else %}
+      <td><form class="" action="/addstudent/{{ student.id }}" method="POST">
+        <button type="submit" name="addstudent" class="btn btn-light">Accept</button>
+      </form></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  {% else %}
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for student in students %}
+    <tr>
+      <td scope="row"><a href="{{ url_for('main.profile', type='student', id=student.studentid) }}">{{ student.name }}</a></td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.birthday }}</td>
+      <td>{{ student.phone }}</td>
+      <td>{{ student.address }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  {% endif %}
+
+</div>
+{% endblock %}

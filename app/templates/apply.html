@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+{% block title %}Apply{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav navbar-right">
+      <a class="nav-item nav-link active" href="{{ url_for('student.apply') }}">Apply</a>
+      <a class="nav-item nav-link active" href="{{ url_for('student.studentlogin') }}">Login</a>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+{% block main %}
+<div class="container-fluid box">
+
+<div class="login-width form">
+
+
+<div class="login-header">
+  <h3>Apply Now</h3>
+</div>
+
+<form action="{{url_for('student.apply')}}" method="POST" enctype="multipart/form-data" >
+  {{ form.hidden_tag() }}
+  <div class="form-group">
+      {{ form.name.label }}
+      {% if form.name.errors %}
+          {{ form.name (class="form-control") }}
+          <div>
+              {% for error in form.name.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.name (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.email.label }}
+      {% if form.email.errors %}
+          {{ form.email (class="form-control") }}
+          <div>
+              {% for error in form.email.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.email (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.birthday.label }}
+      {% if form.birthday.errors %}
+          {{ form.birthday (class="form-control", type="date") }}
+          <div>
+              {% for error in form.birthday.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.birthday (class="form-control", type="date")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.phone.label }}
+      {% if form.phone.errors %}
+          {{ form.phone (class="form-control") }}
+          <div>
+              {% for error in form.phone.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.phone (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.address.label }}
+      {% if form.address.errors %}
+          {{ form.address (class="form-control") }}
+          <div>
+              {% for error in form.address.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.address (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.city.label }}
+      {% if form.city.errors %}
+          {{ form.city (class="form-control") }}
+          <div>
+              {% for error in form.city.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.city (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.country.label }}
+      {% if form.country.errors %}
+          {{ form.country (class="form-control") }}
+          <div>
+              {% for error in form.country.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.country (class="form-control")}}
+      {% endif %}
+  </div>
+  <div class="form-group">
+      {{ form.program.label }}
+      {% if form.program.errors %}
+          {{ form.program (class="form-control") }}
+          <div>
+              {% for error in form.program.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.program (class="form-control")}}
+      {% endif %}
+  </div> <br>
+  <div class="form-group">
+      {{ form.document.label }}
+      {% if form.document.errors %}
+          {{ form.document (class="form-control-file", type="file") }}
+          <div>
+              {% for error in form.document.errors %}
+                  <span class="error">{{ error }}</span>
+              {% endfor %}
+          </div>
+      {% else %}
+          {{ form.document (class="form-control-file", type="file")}}
+      {% endif %}
+  </div>
+
+
+    {{ form.submit(class="btn btn-outline-success") }}
+
+</form>
+<p>Already a student? Go to <a href="{{ url_for('student.studentlogin') }}">Student Login</a>.</p>
+</div>
+</div>
+
+{% endblock %}
